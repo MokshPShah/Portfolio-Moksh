@@ -79,7 +79,7 @@ function NavLinks() {
 
 function DownloadButton() {
     return (
-        <a href="/public/Moksh_CV.pdf" download>
+        <a href="/MOKSH_CV.pdf" download="MOKSH_CV.pdf" target="_blank" rel="noopener noreferrer">
             <NoiseBackground
                 containerClassName="w-fit p-2 rounded-full"
                 gradientColors={[
