@@ -51,25 +51,53 @@ export default function ContactPage() {
   };
 
   // 4. HANDLE SUBMIT
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSuccess(false);
+
+  //   if (validate()) {
+  //     setIsSubmitting(true);
+
+  //     // Simulate API Call (Wait 2 seconds)
+  //     await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  //     console.log("Form Data Submitted:", formData);
+  //     setIsSubmitting(false);
+  //     setIsSuccess(true);
+  //     setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form
+
+  //     // Hide success message after 5 seconds
+  //     setTimeout(() => setIsSuccess(false), 5000);
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSuccess(false);
 
-    if (validate()) {
-      setIsSubmitting(true);
+    if (!validate()) return;
 
-      // Simulate API Call (Wait 2 seconds)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsSubmitting(true);
 
-      console.log("Form Data Submitted:", formData);
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
       setIsSuccess(true);
-      setFormData({ name: "", email: "", subject: "", message: "" }); // Reset form
-
-      // Hide success message after 5 seconds
+      setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setIsSuccess(false), 5000);
+    } catch {
+      alert("Something went wrong. Try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] relative">
@@ -112,7 +140,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm text-neutral-500 font-medium">Email me at</p>
-                  <a href="mailto:contact@moksh.dev" className="text-white hover:text-blue-400 transition-colors">
+                  <a href="mailto:moksh.shah.mps@gmail.com" className="text-white hover:text-blue-400 transition-colors">
                     moksh.shah.mps@gmail.com
                   </a>
                 </div>
@@ -121,10 +149,6 @@ export default function ContactPage() {
               <div className="pt-8 border-t border-white/10">
                 <p className="text-neutral-400 text-sm mb-4">Connect on Socials</p>
                 <div className="flex gap-4">
-                  {/* <SocialLink href="https://github.com/mokshpshah" icon={<IconBrandGithub size={20} />} />
-                  <SocialLink href="https://wa.me/9427390651?text=Hi%20I%20want%20to%20more%20about%20this!" icon={<IconBrandWhatsapp size={20} />} />
-                  <SocialLink href="https://linkedin.com/in/me-moksh" icon={<IconBrandLinkedin size={20} />} />
-                  <SocialLink href="mailto:moksh.shah.mps@gmail.com" icon={<IconMailSpark size={20} />} /> */}
 
                   {/* Github */}
                   <LinkPreview url="https://github.com/MokshPShah">
