@@ -18,8 +18,7 @@ export function Footer() {
                             MOKSH
                         </Link>
                         <p className="text-sm leading-relaxed max-w-xs">
-                            Building digital experiences that matter. Focused on clean code,
-                            performance, and modern user interfaces.
+                            MERN Stack Developer building responsive web apps with React, Node & MongoDB.
                         </p>
                     </div>
 
@@ -102,7 +101,7 @@ export function Footer() {
                             </LinkPreview>
                         </div>
                         <p className="text-xs pt-2">
-                            Email: <span className="text-white">moksh.shah.mps@gmail.com</span>
+                            Email: <Link href={'mailto:moksh.shah.mps@gmail.com'} className="text-white">moksh.shah.mps@gmail.com</Link>
                         </p>
                     </div>
                 </div>
