@@ -1,114 +1,106 @@
-import { Spotlight } from "@/components/ui/spotlight-new";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import { Terminal, Code2 } from "lucide-react";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { Projects } from "@/components/Projects";
 import { Education } from "@/components/Education";
 import { Skills } from "@/components/Skills";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 
 export default function Home() {
   return (
-    <>
-      <div className="min-h-screen w-full rounded-md flex items-center justify-center bg-black/96 antialiased bg-grid-white/[0.02] relative overflow-hidden">
+    <div className="bg-[#0A0A0A] min-h-screen selection:bg-[#3B82F6] selection:text-white">
 
-        {/* 1. The Spotlight Effect */}
-        <Spotlight />
+      {/* 1. MINIMALIST HIGH-CONTRAST HERO (BLUE THEME) */}
+      <main className="relative flex flex-col items-center justify-center min-h-screen px-4 pt-10 pb-16 overflow-hidden">
 
-        {/* 2. THE BACKGROUND NAME (Behind everything) */}
         <div className="absolute inset-0 pointer-events-none">
           <TextHoverEffect text="Moksh" />
         </div>
 
-        {/* 3. The Main Content (Grid Layout) */}
-        <div className="relative container mx-auto px-4 md:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Subtle Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1F2937_1px,transparent_1px),linear-gradient(to_bottom,#1F2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
 
-            {/* LEFT COLUMN: Text Content */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left pt-20 lg:pt-0">
-              <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
-                Create, Deploy, <br /> and Scale.
-              </h1>
+        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
 
-              <p className="mt-4 font-normal text-base text-neutral-300 max-w-lg">
-                I am a full-stack developer building modern web applications.
-                I focus on intuitive design, clean code, and user experience.
-              </p>
+          {/* Availability Status Badge */}
+          <div className="flex items-center gap-3 px-4 py-1.5 mb-10 rounded-full border border-white/10 bg-[#111827] text-neutral-400 text-sm font-medium shadow-sm">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3B82F6] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#3B82F6]"></span>
+            </span>
+            Available for new opportunities
+          </div>
 
-              <div className="mt-8 flex gap-4">
-                <Link href="/projects">
-                  <HoverBorderGradient
-                    containerClassName="rounded-full"
-                    as="button"
-                    className="rounded-full bg-white text-black hover:bg-neutral-200 cursor-pointer flex items-center space-x-2"
-                  >
-                    <span>See my work</span>
-                  </HoverBorderGradient>
-                </Link>
-
-                <Link href="/contact">
-                  <HoverBorderGradient
-                    containerClassName="rounded-full"
-                    as="button"
-                    className="rounded-full border-white/20 text-white hover:bg-white/10 cursor-pointer flex items-center space-x-2"
-                  >
-                    <span>Contact Me</span>
-                    <ArrowRight className="h-4 w-4" />
-                  </HoverBorderGradient>
-                </Link>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN: Your Image */}
-            <div className="flex justify-center lg:justify-end relative">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 h-75 bg-blue-500/20 blur-[100px] rounded-full"></div>
-
-              <div className="relative w-75 h-75 md:w-100 md:h-100 rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-                <Image
-                  src="/profile.png"
-                  alt="My Profile"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+          {/* Avatar Area */}
+          <div className="relative mb-10">
+            <div className="absolute -inset-2 rounded-full bg-[#3B82F6] blur-xl opacity-20"></div>
+            <div className="relative w-32 h-32 md:w-50 md:h-50 rounded-full overflow-hidden border-2 border-white/10 bg-[#111827] shadow-[0_0_30px_rgba(59,130,246,0.15)]">
+              <Image
+                src="/profile.png"
+                alt="Moksh Shah"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
+
+          {/* Primary Headline */}
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+            <span className="text-neutral-600 font-mono font-light mr-4 sm:mr-6">{">"}</span>
+            Hello, I'm <span className="text-[#3B82F6]">Moksh</span>.
+          </h1>
+
+          {/* Animated Subtitle */}
+          <div className="max-w-2xl text-lg md:text-xl text-neutral-400 mb-12 leading-relaxed font-mono">
+            <TextGenerateEffect
+              words="A Full Stack Web Developer. I build clean, high-performance backend architectures and stark, functional interfaces."
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Link
+              href="/projects"
+              className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold transition-all cursor-pointer w-full sm:w-auto shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+            >
+              <Code2 size={18} />
+              View Projects
+            </Link>
+
+            <Link
+              href="/contact"
+              className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-[#111827] hover:bg-[#1F2937] text-white font-semibold transition-all cursor-pointer w-full sm:w-auto border border-white/10 shadow-sm"
+            >
+              <Terminal size={18} />
+              Contact Me
+            </Link>
+          </div>
         </div>
+      </main>
 
-      </div>
-
-      <div className="relative z-10">
+      {/* 2. PAGE SECTIONS */}
+      <div className="relative z-10 bg-[#0A0A0A]">
         <Skills />
-      </div>
-
-      <div className="relative z-10">
         <Projects />
-      </div>
-
-      <div className="relative z-10">
         <Education />
-      </div>
 
-      <div className="relative z-10 space-y-7">
-        {/* 4. FINAL CALL TO ACTION */}
-        <div className="mt-32 mb-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Have a project in mind?
+        {/* 3. FINAL CTA */}
+        <div className="mt-32 mb-24 text-center px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
+            Ready to build something?
           </h2>
-          <p className="text-neutral-400 max-w-xl mx-auto mb-8 text-lg">
-            I am currently open to freelance work and internship opportunities.
-            Let's discuss how I can contribute to your team.
+          <p className="text-neutral-400 max-w-xl mx-auto mb-10 text-lg">
+            Whether you need a robust backend structure or a clean frontend execution, my inbox is open.
           </p>
           <Link
             href="/contact"
-            className="inline-flex h-12 animate-shimmer items-center justify-center rounded-full border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-8 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-lg bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold transition-all cursor-pointer border border-[rgba(240,246,252,0.1)] shadow-[0_0_20px_rgba(59,130,246,0.2)] text-lg"
           >
-            Contact Me
+            Get In Touch
           </Link>
         </div>
       </div>
-
-    </>
+    </div>
   );
 }

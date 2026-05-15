@@ -33,13 +33,13 @@ export function Education() {
           {/* Item 2: Full Stack Course */}
           <div className="mb-14">
             <span className="bg-blue-500 text-white rounded-full text-sm w-fit px-4 py-1 font-bold mb-4 block">
-              2024 - Present
+              2024 - 2026
             </span>
             <h3 className="text-2xl font-bold text-white mb-2">
               Full Stack Development Course
             </h3>
             <p className="text-neutral-400">
-               Red & White Institute
+               Red & White Skill Education
             </p>
             <div className="text-sm mt-4 prose prose-sm dark:prose-invert text-neutral-300">
               <ul className="list-disc pl-5 space-y-2">

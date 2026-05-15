@@ -2,161 +2,215 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight, Code2, Github, Layers, Terminal } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { LampContainer } from "@/components/ui/lamp";
 import Link from "next/link";
 
-// --- DATA ---
+// --- ALL PROJECTS DATA ---
 const projects = [
+  // FEATURED PROJECT
+  {
+    title: "Strenoxa E-Commerce",
+    category: "Full Stack Platform",
+    description:
+      "A premium, full-scale e-commerce platform built for a gym supplements brand. Features global state management via Redux Toolkit, secure JWT authentication, and a fully integrated Razorpay payment gateway for seamless checkouts.",
+    image: "/hero.png", // Update this with your actual strenoxa screenshot
+    stack: ["Next.js", "Redux", "Razorpay", "MongoDB", "Tailwind CSS"],
+    link: "https://github.com/MokshPShah/Strenoxa_E-Commerce",
+    live: "https://strenoxa.vercel.app", 
+    featured: true,
+  },
+  // OTHER PROJECTS
+  {
+    title: "Inventory Management System",
+    category: "Enterprise Dashboard",
+    description:
+      "A robust MERN stack inventory tracking system designed for enterprise scale. Includes secure role-based access control, real-time analytics, and Cloudinary integration.",
+    image: "/inventory.png",
+    stack: ["React.js", "Express.js", "Cloudinary", "MongoDB"],
+    link: "https://github.com/MokshPShah/Inventory_Management",
+    live: "https://inventory-management-two-mu.vercel.app",
+    featured: false,
+  },
   {
     title: "Custom Admin Panel",
-    category: "Full Stack Application",
+    category: "Backend Architecture",
     description:
-      "A comprehensive backend administration dashboard built using server-side rendering. It allows admins to manage users, view system analytics, and perform full CRUD operations directly from a secure interface. Designed for speed and SEO efficiency.",
+      "A blazing-fast, server-side rendered administration dashboard built with EJS. Designed using a strict MVC architecture to securely manage users, categories, and perform CRUD operations.",
     image: "/project-admin.jpg",
     stack: ["Node.js", "Express.js", "EJS", "MongoDB"],
     link: "https://github.com/MokshPShah/Node-Js/tree/main/Admin-Panel",
-    featured: true,
-  },
-  {
-    title: "AI Image Generator",
-    category: "AI + Full Stack Application",
-    description:
-      "A web-based AI image generation app where users can enter prompts and generate high-quality images instantly. Includes a clean UI, prompt handling, and API integration to fetch and render generated images smoothly. Built to demonstrate real-world AI integration in a modern frontend workflow.",
-    image: "/project-ai-image.png",
-    stack: ["React.js", "REST API", "OpenAI API"],
-    link: "https://github.com/MokshPShah/AI-Image-Generator",
+    live: "#",
     featured: false,
   },
   {
     title: "Chatbot AI",
-    category: "AI Assistant Application",
+    category: "Intelligent Interface",
     description:
-      "An AI-powered chatbot application that takes user queries and returns smart, conversational responses. Designed with a simple chat UI and backend logic to handle message flow, API calls, and response rendering in real time. Shows strong fundamentals of building interactive AI tools.",
+      "An intelligent conversational interface powered by the Google Gemini API. Built from the ground up with React and Vite, featuring robust prompt handling and real-time typing effects.",
     image: "/project-chatbot.png",
-    stack: ["React.js", "REST API", "OpenAI API"],
+    stack: ["React.js", "Gemini API", "Vite", "Tailwind"],
     link: "https://github.com/MokshPShah/Chatbot-AI",
+    live: "https://mchatbot.netlify.app",
     featured: false,
   },
   {
-    title: "React.js Mini Projects Collection",
+    title: "Movie Database Portal",
+    category: "Web Application",
+    description:
+      "A movie browsing application where users can discover films, view detailed descriptions, and manage movie data using a custom backend architecture.",
+    image: "/movies.png",
+    stack: ["Node.js", "Express.js", "EJS", "MongoDB"],
+    link: "https://github.com/MokshPShah/Node-Js/tree/main/Movie-Project",
+    live: "#",
+    featured: false,
+  },
+  {
+    title: "AI Image Generator",
+    category: "AI Integration",
+    description:
+      "A web-based AI image generation app where users can enter prompts and generate high-quality images instantly. Built to demonstrate real-world AI integration.",
+    image: "/project-ai-image.png",
+    stack: ["React.js", "REST API", "OpenAI API"],
+    link: "https://github.com/MokshPShah/AI-Image-Generator",
+    live: "https://genximage.netlify.app/",
+    featured: false,
+  },
+  {
+    title: "React.js Components Library",
     category: "Frontend Development",
     description:
-      "A collection of React.js projects covering core frontend concepts like components, props, state management, routing, and UI structure. Useful for showcasing your practical React skills with multiple working examples and clean code organization.",
+      "A collection of React.js projects covering core frontend concepts like components, props, state management, routing, and UI structure.",
     image: "/project-react.png",
     stack: ["React.js", "JavaScript", "Tailwind CSS"],
     link: "https://github.com/MokshPShah/React-Js",
+    live: "#",
     featured: false,
   },
   {
-    title: "Node.js Backend Practice Projects",
+    title: "Node.js API Microservices",
     category: "Backend Development",
     description:
-      "A set of Node.js projects focused on backend development fundamentals like REST APIs, routing, middleware, server setup, and database integration. Great for demonstrating your backend knowledge and ability to build scalable server-side applications.",
+      "A set of Node.js projects focused on backend development fundamentals like REST APIs, routing, middleware, server setup, and database integration.",
     image: "/project-node.png",
     stack: ["Node.js", "Express.js", "MongoDB", "REST API"],
     link: "https://github.com/MokshPShah/Node-Js",
+    live: "#",
     featured: false,
   },
 ];
 
-
-// --- MAIN PAGE COMPONENT ---
 export default function ProjectContent() {
   const featuredProject = projects.find((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <div className="min-h-screen bg-black/[0.96] antialiased bg-grid-white/[0.02] relative pb-20">
+    <div className="min-h-screen bg-[#0A0A0A] antialiased bg-grid-white/[0.02] relative pb-20">
 
-      {/* 1. HEADER */}
-      <LampContainer className="pt-36 h-[40vh]">
+      {/* 1. HEADER (LAMP EFFECT) */}
+      <LampContainer className="pt-36 h-[40vh] md:h-[50vh]">
         <motion.h1
           initial={{ opacity: 0.5, y: 100 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
-          className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-8 bg-gradient-to-br from-white via-blue-100 to-[#3B82F6] py-4 bg-clip-text text-center text-5xl font-extrabold tracking-tight text-transparent md:text-8xl"
         >
-          My Work
+          My Works.
         </motion.h1>
       </LampContainer>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-10 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 -mt-20 relative z-10 space-y-32">
 
-        {/* 2. FEATURED PROJECT (HERO) */}
+        {/* 2. FEATURED PROJECT: STRENOXA */}
         {featuredProject && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full"
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="w-full flex flex-col items-center"
           >
-            <h2 className="text-2xl text-white font-bold mb-6 flex items-center gap-2">
-              <span className="h-2 w-2 bg-blue-500 rounded-full animate-pulse" />
-              Featured Project
-            </h2>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111827] border border-[#3B82F6]/30 text-[#3B82F6] text-sm font-semibold mb-8 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+              <span className="h-2 w-2 bg-[#3B82F6] rounded-full animate-ping mr-1" />
+              Flagship Project
+            </div>
 
-            <div className="group relative w-full border border-white/10 bg-neutral-900/50 rounded-3xl overflow-hidden hover:border-blue-500/50 transition-colors duration-500">
+            <div className="group relative w-full border border-white/10 bg-[#111827]/80 backdrop-blur-md rounded-[2rem] overflow-hidden hover:border-[#3B82F6]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(59,130,246,0.15)]">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
-                {/* Image Section */}
-                <div className="relative h-64 lg:h-auto overflow-hidden">
-                  <div className="absolute inset-0 bg-blue-500/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                {/* Visual Section */}
+                <div className="relative h-72 lg:h-auto overflow-hidden bg-black/50">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#111827]/90 hidden lg:block z-10" />
+                  <div className="absolute inset-0 bg-[#3B82F6]/10 group-hover:bg-transparent transition-colors duration-700 z-10" />
                   <Image
                     src={featuredProject.image}
                     alt={featuredProject.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-1000 ease-out"
                   />
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-300 border border-blue-500/20">
-                      {featuredProject.category}
-                    </span>
-                  </div>
+                <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center relative z-20">
+                  <span className="text-sm font-mono text-[#3B82F6] uppercase tracking-widest mb-4 block">
+                    {featuredProject.category}
+                  </span>
 
-                  <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">
-                    <Link href={featuredProject.link} target="_blank">
-                      {featuredProject.title}
-                    </Link>
+                  <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+                    {featuredProject.title}
                   </h3>
 
                   <p className="text-neutral-400 leading-relaxed mb-8 text-lg">
-                    <Link href={featuredProject.link} target="_blank">
-                      {featuredProject.description}
-                    </Link>
+                    {featuredProject.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-3 mb-10">
                     {featuredProject.stack.map((tech) => (
-                      <span key={tech} className="text-sm text-neutral-500 flex items-center gap-1">
-                        <Layers size={14} /> {tech}
+                      <span key={tech} className="px-4 py-2 bg-black/50 rounded-lg text-sm font-medium text-neutral-300 border border-white/5">
+                        {tech}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex gap-4">
+                  {/* DYNAMIC HERO BUTTONS */}
+                  <div className="flex flex-wrap gap-4 mt-auto">
+                    {featuredProject.live && (
+                      <Link
+                        href={featuredProject.live}
+                        target="_blank"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#3B82F6] text-white font-bold rounded-xl hover:bg-[#2563EB] transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.3)] cursor-pointer"
+                      >
+                        Live Preview <ExternalLink size={20} />
+                      </Link>
+                    )}
                     <Link
                       href={featuredProject.link}
                       target="_blank"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-full hover:bg-neutral-200 transition-colors"
+                      className={`inline-flex items-center justify-center gap-2 px-8 py-4 font-bold rounded-xl transition-all duration-300 cursor-pointer ${featuredProject.live
+                          ? "bg-[#111827] border border-white/10 text-white hover:bg-white/5"
+                          : "bg-[#3B82F6] text-white hover:bg-[#2563EB] shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                        }`}
                     >
-                      View Project <ArrowUpRight size={18} />
+                      Source Code <Github size={20} />
                     </Link>
                   </div>
                 </div>
+
               </div>
             </div>
           </motion.div>
         )}
 
-        {/* 3. OTHER PROJECTS GRID */}
+        {/* 3. OTHER PROJECTS BENTO GRID */}
         <div>
-          <h2 className="text-2xl text-white font-bold mb-8">More Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              More Repositories
+            </h2>
+            <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             {otherProjects.map((project, index) => (
               <ProjectCard key={index} project={project} index={index} />
             ))}
@@ -164,19 +218,19 @@ export default function ProjectContent() {
         </div>
 
         {/* 4. FINAL CALL TO ACTION */}
-        <div className="mt-32 mb-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Have a project in mind?
+        <div className="mt-40 mb-20 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            Ready to build something?
           </h2>
-          <p className="text-neutral-400 max-w-xl mx-auto mb-8 text-lg">
+          <p className="text-neutral-400 max-w-xl mx-auto mb-10 text-lg">
             I am currently open to freelance work and internship opportunities.
-            Let's discuss how I can contribute to your team.
+            Let's discuss how I can contribute to your team's success.
           </p>
           <Link
             href="/contact"
-            className="inline-flex h-12 animate-shimmer items-center justify-center rounded-full border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-8 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+            className="inline-flex h-14 items-center justify-center rounded-xl bg-[#3B82F6] hover:bg-[#2563EB] px-10 font-bold text-white transition-colors shadow-[0_0_20px_rgba(59,130,246,0.2)] cursor-pointer text-lg"
           >
-            Contact Me
+            Get In Touch
           </Link>
         </div>
 
@@ -185,60 +239,80 @@ export default function ProjectContent() {
   );
 }
 
-// --- SUB-COMPONENT: SIMPLE CARD ---
+// --- SUB-COMPONENT: BENTO CARD ---
 function ProjectCard({ project, index }: { project: any; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative flex flex-col justify-between border border-white/10 bg-neutral-900/30 rounded-2xl overflow-hidden hover:bg-neutral-900/80 hover:border-white/20 transition-all duration-300"
+      transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      className="group relative flex flex-col h-full justify-between border border-white/5 bg-[#111827] rounded-3xl overflow-hidden hover:-translate-y-2 hover:border-[#3B82F6]/50 hover:shadow-[0_10px_40px_-15px_rgba(59,130,246,0.3)] transition-all duration-500"
     >
+      {/* Ambient Top Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-[#3B82F6] blur-[100px] opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none" />
+
       {/* Image Area */}
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative h-56 w-full overflow-hidden border-b border-white/5 bg-black/50">
         <Image
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-500"
+          className="object-cover object-top opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500" />
+        {/* Overlay to ensure image blends well */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent" />
       </div>
 
-      {/* Text Area */}
-      <div className="p-6 flex flex-col flex-grow">
+      {/* Content Area */}
+      <div className="p-8 flex flex-col flex-grow relative z-10">
         <div className="mb-auto">
-          <span className="text-xs font-mono text-blue-400 mb-2 block">
+          <span className="text-xs font-mono text-[#3B82F6] uppercase tracking-wider mb-3 block">
             {project.category}
           </span>
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
-            <Link href={project.link} target="_blank">
-              {project.title}
-            </Link>
+          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#3B82F6] transition-colors">
+            {project.title}
           </h3>
-          <p className="text-neutral-400 text-sm leading-relaxed mb-4 line-clamp-3">
-            <Link href={project.link} target="_blank">
-              {project.description}
-            </Link>
+          <p className="text-neutral-400 text-sm md:text-base leading-relaxed line-clamp-3">
+            {project.description}
           </p>
         </div>
 
-        {/* Footer Area */}
-        <div className="pt-4 border-t border-white/5 mt-4">
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.stack.slice(0, 3).map((t: string) => (
-              <span key={t} className="text-xs text-neutral-600 bg-white/5 px-2 py-1 rounded">
-                {t}
-              </span>
-            ))}
-          </div>
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mt-6 mb-8">
+          {project.stack.slice(0, 3).map((t: string) => (
+            <span key={t} className="text-xs font-medium text-neutral-300 bg-white/5 border border-white/5 px-3 py-1.5 rounded-md">
+              {t}
+            </span>
+          ))}
+          {project.stack.length > 3 && (
+            <span className="text-xs font-medium text-neutral-500 bg-transparent px-2 py-1.5">
+              +{project.stack.length - 3} more
+            </span>
+          )}
+        </div>
+
+        {/* DYNAMIC CARD FOOTER */}
+        <div className="flex items-center justify-between w-full pt-6 border-t border-white/5 mt-auto">
           <Link
             href={project.link}
             target="_blank"
-            className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors"
+            className="flex items-center gap-2 text-sm font-semibold text-neutral-400 hover:text-white transition-colors group/git"
           >
-            <Github size={16} /> View Code
+            <Github size={18} className="group-hover/git:text-[#3B82F6] transition-colors" />
+            Source Code
           </Link>
+
+          {project.live !== "#" && (
+            <Link
+              href={project.live}
+              target="_blank"
+              className="flex items-center gap-1.5 text-sm font-bold text-[#3B82F6] hover:text-white transition-colors group/live"
+            >
+              Live Demo
+              <ExternalLink size={16} className="group-hover/live:-translate-y-0.5 group-hover/live:translate-x-0.5 transition-transform" />
+            </Link>
+          ) }
         </div>
       </div>
     </motion.div>

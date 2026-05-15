@@ -1,116 +1,179 @@
+"use client";
 import React from "react";
-import { PinContainer } from "@/components/ui/3d-pin";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { Github, ExternalLink, ShoppingCart, Database, LayoutDashboard, Bot } from "lucide-react";
+import Link from "next/link";
 
+// --- PROJECT DATA ---
 const projects = [
   {
+    id: "01",
+    title: "Strenoxa E-Commerce",
+    category: "Full Stack Platform",
+    description:
+      "A premium, full-scale e-commerce platform built for a gym supplements brand. Features global state management via Redux Toolkit, secure JWT authentication, and a fully integrated Razorpay payment gateway for seamless checkouts.",
+    stack: ["Next.js", "Redux", "Razorpay", "MongoDB", "Tailwind"],
+    github: "https://github.com/MokshPShah/Strenoxa_E-Commerce",
+    live: "https://strenoxa.vercel.app",
+    icon: ShoppingCart,
+    accent: "from-blue-600 to-indigo-600",
+    textAccent: "text-blue-500",
+  },
+  {
+    id: "02",
+    title: "Inventory Management",
+    category: "Enterprise Dashboard",
+    description:
+      "A robust MERN stack inventory tracking system designed for enterprise scale. Includes secure role-based access control, real-time analytics, and seamless Cloudinary integration for efficient product image management.",
+    stack: ["React.js", "Express.js", "Cloudinary", "MongoDB"],
+    github: "https://github.com/MokshPShah/Inventory_Management",
+    live: "https://inventory-management-two-mu.vercel.app",
+    icon: Database,
+    accent: "from-emerald-500 to-teal-600",
+    textAccent: "text-emerald-500",
+  },
+  {
+    id: "03",
     title: "Custom Admin Panel",
-    category: "Full Stack Application",
+    category: "Backend Architecture",
     description:
-      "A comprehensive backend administration dashboard built using server-side rendering. Manage users, analytics, and CRUD operations securely.",
-    image: "/project-admin.jpg",
+      "A blazing-fast, server-side rendered administration dashboard built with EJS. Designed using a strict MVC architecture to securely manage users, categories, and perform full CRUD operations directly from a centralized interface.",
     stack: ["Node.js", "Express.js", "EJS", "MongoDB"],
-    link: "https://github.com/MokshPShah/Node-Js/tree/main/Admin-Panel",
-    featured: true,
-    color: "from-violet-500 via-purple-500 to-blue-500",
+    github: "https://github.com/MokshPShah/Admin-Panel",
+    live: "#",
+    icon: LayoutDashboard,
+    accent: "from-purple-500 to-violet-600",
+    textAccent: "text-purple-500",
   },
   {
-    title: "AI Image Generator",
-    category: "AI + Full Stack Application",
-    description:
-      "A web-based AI image generation app. Enter prompts to generate high-quality images instantly via API integration.",
-    image: "/project-ai-image.png",
-    stack: ["React.js", "REST API", "OpenAI API"],
-    link: "https://github.com/MokshPShah/AI-Image-Generator",
-    featured: false,
-    color: "from-cyan-500 via-blue-500 to-indigo-500",
-  },
-  {
+    id: "04",
     title: "Chatbot AI",
-    category: "AI Assistant Application",
+    category: "Intelligent Interface",
     description:
-      "An AI-powered chatbot that handles conversational flows. Features real-time response rendering and API message handling.",
-    image: "/project-chatbot.png",
-    stack: ["React.js", "REST API", "OpenAI API"],
-    link: "https://github.com/MokshPShah/Chatbot-AI",
-    featured: false,
-    color: "from-orange-500 via-red-500 to-yellow-500",
-  },
-  {
-    title: "React.js Collection",
-    category: "Frontend Development",
-    description:
-      "A collection of projects covering core concepts like components, props, state, routing, and UI structure.",
-    image: "/project-react.png",
-    stack: ["React.js", "JavaScript", "Tailwind CSS"],
-    link: "https://github.com/MokshPShah/React-Js",
-    featured: false,
-    color: "from-emerald-500 via-green-500 to-lime-500",
-  },
-  {
-    title: "Node.js Backend",
-    category: "Backend Development",
-    description:
-      "Backend practice projects focused on REST APIs, routing, middleware, server setup, and database integration.",
-    image: "/project-node.png",
-    stack: ["Node.js", "Express.js", "MongoDB", "REST API"],
-    link: "https://github.com/MokshPShah/Node-Js",
-    featured: false,
-    color: "from-pink-500 via-rose-500 to-red-500",
+      "An intelligent conversational interface powered by the Google Gemini API. Built from the ground up with React and Vite, featuring robust prompt handling, persistent context management, and a highly responsive UI.",
+    stack: ["React.js", "Gemini API", "Vite", "Tailwind CSS"],
+    github: "https://github.com/MokshPShah/Chatbot-AI",
+    live: "https://mchatbot.netlify.app",
+    icon: Bot,
+    accent: "from-cyan-500 to-blue-600",
+    textAccent: "text-cyan-500",
   },
 ];
 
 export function Projects() {
   return (
-    <div className="py-20 w-full">
-      <h2 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 mb-10">
-        Recent Projects
-      </h2>
+    <div className="w-full bg-[#0A0A0A] py-32 relative z-10 font-sans">
 
-      <div className="flex flex-wrap items-center justify-center p-4 gap-16 mt-10">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="h-[25rem] w-[20rem] flex items-center justify-center sm:w-96"
-          >
-            <PinContainer title={project.link} href={project.link}>
-              <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">
-                <h3 className="max-w-xs !pb-2 !m-0 font-bold text-base text-slate-100">
-                  {project.title}
-                </h3>
-                <div className="text-base !m-0 !p-0 font-normal">
-                  <span className="text-slate-500 line-clamp-3">
-                    {project.description}
+      {/* --- SECTION HEADER --- */}
+      <div className="max-w-7xl mx-auto px-6 mb-24">
+        <h2 className="text-5xl md:text-7xl font-extrabold text-white tracking-tighter mb-6">
+          Selected <br className="md:hidden" /> <span className="text-[#3B82F6]">Works.</span>
+        </h2>
+        <div className="w-24 h-1 bg-[#3B82F6] rounded-full mb-8"></div>
+        <p className="text-neutral-400 text-xl max-w-2xl leading-relaxed">
+          A showcase of my expertise in building scalable architectures, intelligent interfaces, and robust full-stack systems.
+        </p>
+      </div>
+
+      {/* --- PROJECTS LIST --- */}
+      <div className="max-w-7xl mx-auto px-6 flex flex-col gap-32">
+        {projects.map((project, index) => {
+          const isEven = index % 2 === 0;
+          const Icon = project.icon;
+
+          return (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${!isEven ? "lg:flex-row-reverse" : ""
+                }`}
+            >
+
+              {/* --- VISUAL AREA (Left on Even, Right on Odd) --- */}
+              <div className="w-full lg:w-1/2 aspect-[4/3] relative group rounded-[2rem] overflow-hidden bg-[#111827] border border-white/5 flex items-center justify-center shadow-2xl">
+
+                {/* Dynamic Gradient Glow Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-10 group-hover:opacity-20 transition-opacity duration-700`} />
+                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br ${project.accent} blur-[100px] opacity-30 group-hover:opacity-60 transition-opacity duration-700 rounded-full`} />
+
+                {/* Main Icon (Replace with <Image /> when you have screenshots) */}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                  className="relative z-10 text-white/80 group-hover:text-white transition-colors duration-500 drop-shadow-2xl"
+                >
+                  <Icon size={120} strokeWidth={1.5} />
+                </motion.div>
+
+              </div>
+
+              {/* --- CONTENT AREA --- */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-center">
+
+                {/* Project Number & Category */}
+                <div className="flex items-center gap-4 mb-6">
+                  <span className={`text-6xl font-black opacity-20 ${project.textAccent}`}>
+                    {project.id}
+                  </span>
+                  <span className="text-sm font-mono text-neutral-500 uppercase tracking-widest mt-2">
+                    {project.category}
                   </span>
                 </div>
-                
-                {/* Visual Content Area */}
-                <div
-                  className={`flex flex-1 w-full rounded-lg mt-4 bg-gradient-to-br ${project.color} overflow-hidden relative group`}
-                >
-                  <Image 
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                   />
-                   
-                   {/* Fallback visual for now showing tech stack */}
-                   <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-                      <div className="flex flex-wrap justify-center gap-2 px-4">
-                        {project.stack.slice(0,3).map((tech, i) => (
-                           <span key={i} className="px-2 py-1 bg-black/40 rounded text-xs text-white backdrop-blur-sm border border-white/10">
-                             {tech}
-                           </span>
-                        ))}
-                      </div>
-                   </div>
+
+                {/* Title */}
+                <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-neutral-400 text-lg md:text-xl leading-relaxed mb-10">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-3 mb-12">
+                  {project.stack.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-4 py-2 bg-white/5 rounded-full text-sm font-medium text-neutral-300 border border-white/5 hover:bg-white/10 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
+
+                {/* Links / Buttons */}
+                <div className="flex flex-wrap gap-6">
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    className="flex items-center gap-3 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-neutral-200 transition-colors group"
+                  >
+                    <Github size={20} className="group-hover:scale-110 transition-transform" />
+                    <span>View Source</span>
+                  </Link>
+
+                  {project.live !== "#" && (
+                    <Link
+                      href={project.live}
+                      target="_blank"
+                      className="flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors group"
+                    >
+                      <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
+                      <span>Live Demo</span>
+                    </Link>
+                  )}
+                </div>
+
               </div>
-            </PinContainer>
-          </div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
+
     </div>
   );
 }
