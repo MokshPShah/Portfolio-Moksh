@@ -1,13 +1,27 @@
 import { NextResponse } from "next/server";
-const nodemailer = require('nodemailer');
+import nodemailer from "nodemailer";
+
+// Form input goes into an HTML email, so escape it first.
+const escapeHtml = (value: unknown) =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 
 export async function POST(req: Request) {
   try {
-    const { name, email, subject, message } = await req.json();
+    const body = await req.json();
 
-    if (!name || !email || !subject || !message) {
+    if (!body.name || !body.email || !body.subject || !body.message) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
+
+    const name = escapeHtml(body.name);
+    const email = escapeHtml(body.email);
+    const subject = escapeHtml(body.subject);
+    const message = escapeHtml(body.message);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -61,8 +75,8 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
-      replyTo: email,
-      subject: `New Inquiry: ${subject}`, // Cleaner subject line
+      replyTo: String(body.email),
+      subject: `New Inquiry: ${String(body.subject).replace(/[\r\n]+/g, " ")}`, // Cleaner subject line
       html: emailHtml, // Replaced the basic HTML with our styled template
     });
 
