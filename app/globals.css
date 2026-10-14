@@ -6,10 +6,10 @@
 /* Light and dark themes. Light mode has no black: text and the dark blocks are deep pine.
    Dark mode is neutral charcoal with an off-white accent: no green at all.
    The visitor's toggle choice wins; without one we follow the OS setting.
-   Light palette: https://www.realtimecolors.com/?colors=12352f-eef3f1-0c6b57-dceae5-0c6b57&fonts=Bricolage+Grotesque-Geist */
+   Light palette: https://www.realtimecolors.com/?colors=12352f-eef3f1-0c6b57-dceae5-0c6b57&fonts=Bricolage+Grotesque-Figtree */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body-sans);
+  --font-mono: var(--font-code-mono);
   --font-display: var(--font-display-face);
   --color-paper: var(--paper);
   --color-surface: var(--surface);

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Figtree, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -7,8 +7,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { profile } from "@/lib/content";
 import { keywords, personSchema, siteDescription, siteUrl, websiteSchema } from "@/lib/site";
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+// Body text in Figtree, the same face as the resume, so the two read as one set.
+const bodySans = Figtree({ subsets: ["latin"], variable: "--font-body-sans" });
+const codeMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-code-mono" });
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display-face" });
 
 const defaultTitle = `${profile.name}, Full Stack Developer in Surat, India`;
@@ -66,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-IN"
-      className={`${geistSans.variable} ${geistMono.variable} ${display.variable}`}
+      className={`${bodySans.variable} ${codeMono.variable} ${display.variable}`}
       suppressHydrationWarning
     >
       <head>
